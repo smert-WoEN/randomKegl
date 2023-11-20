@@ -30,40 +30,64 @@ def plotField():
 
 def randomKegelAndPlot():
     randomCount = np.random.randint(3, size=16)
-    while np.count_nonzero(randomCount == 2) != 4 or np.count_nonzero(randomCount == 1) != 4:
+    while True:
+        if np.count_nonzero(randomCount == 2) == 4 and np.count_nonzero(randomCount == 1) == 4:
+            cb = 0
+            cw = 0
+            for i in range(0, 16, 2):
+                if randomCount[i] == 1:
+                    cw += 1
+                elif randomCount[i] == 2:
+                    cb += 1
+            if cb == 2 and cw == 2:
+                pos = 0
+                for i in range(16):
+                    if randomCount[i] != 0:
+                        pos = i
+                        break
+                for i in range(pos + 1, 16):
+                    if randomCount[i] != 0:
+                        if randomCount[i] != randomCount[pos]:
+                            pos = i
+                        else:
+                            break
+                else:
+                    break
+
         randomCount = np.random.randint(3, size=16)
     plotCircle(400, 0, 30, color=('y' if randomCount[0] == 0 else ('#E7E4DA' if randomCount[0] == 1 else 'k')), fill=True)
-    plotCircle(-400, 0, 30, color=('y' if randomCount[1] == 0 else ('#E7E4DA' if randomCount[1] == 1 else 'k')), fill=True)
-    plotCircle(0, 400, 30, color=('y' if randomCount[2] == 0 else ('#E7E4DA' if randomCount[2] == 1 else 'k')), fill=True)
-    plotCircle(0, -400, 30, color=('y' if randomCount[3] == 0 else ('#E7E4DA' if randomCount[3] == 1 else 'k')), fill=True)
-    plotCircle(400*math.cos(math.pi/4), 400*math.sin(math.pi/4), 30, color=('y' if randomCount[4] == 0 else ('#E7E4DA' if randomCount[4] == 1 else 'k')), fill=True)
-    plotCircle(-400*math.cos(math.pi/4), -400*math.sin(math.pi/4), 30, color=('y' if randomCount[5] == 0 else ('#E7E4DA' if randomCount[5] == 1 else 'k')), fill=True)
-    plotCircle(-400*math.cos(math.pi/4), 400*math.sin(math.pi/4), 30, color=('y' if randomCount[6] == 0 else ('#E7E4DA' if randomCount[6] == 1 else 'k')), fill=True)
-    plotCircle(400*math.cos(math.pi/4), -400*math.sin(math.pi/4), 30, color=('y' if randomCount[7] == 0 else ('#E7E4DA' if randomCount[7] == 1 else 'k')), fill=True)
-    plotCircle(675*math.cos(math.radians(22.5)), 675*math.sin(math.radians(22.5)), 30, color=('y' if randomCount[8] == 0 else ('#E7E4DA' if randomCount[8] == 1 else 'k')), fill=True)
-    plotCircle(-675*math.cos(math.radians(22.5)), -675*math.sin(math.radians(22.5)), 30, color=('y' if randomCount[9] == 0 else ('#E7E4DA' if randomCount[9] == 1 else 'k')), fill=True)
-    plotCircle(-675*math.cos(math.radians(22.5)), 675*math.sin(math.radians(22.5)), 30, color=('y' if randomCount[10] == 0 else ('#E7E4DA' if randomCount[10] == 1 else 'k')), fill=True)
-    plotCircle(675*math.cos(math.radians(22.5)), -675*math.sin(math.radians(22.5)), 30, color=('y' if randomCount[11] == 0 else ('#E7E4DA' if randomCount[11] == 1 else 'k')), fill=True)
-    plotCircle(675*math.cos(math.radians(67.5)), 675*math.sin(math.radians(67.5)), 30, color=('y' if randomCount[12] == 0 else ('#E7E4DA' if randomCount[12] == 1 else 'k')), fill=True)
-    plotCircle(-675*math.cos(math.radians(67.5)), -675*math.sin(math.radians(67.5)), 30, color=('y' if randomCount[13] == 0 else ('#E7E4DA' if randomCount[13] == 1 else 'k')), fill=True)
-    plotCircle(-675*math.cos(math.radians(67.5)), 675*math.sin(math.radians(67.5)), 30, color=('y' if randomCount[14] == 0 else ('#E7E4DA' if randomCount[14] == 1 else 'k')), fill=True)
-    plotCircle(675*math.cos(math.radians(67.5)), -675*math.sin(math.radians(67.5)), 30, color=('y' if randomCount[15] == 0 else ('#E7E4DA' if randomCount[15] == 1 else 'k')), fill=True)
+    plotCircle(675*math.cos(math.radians(22.5)), -675*math.sin(math.radians(22.5)), 30, color=('y' if randomCount[1] == 0 else ('#E7E4DA' if randomCount[1] == 1 else 'k')), fill=True)
+    plotCircle(400*math.cos(math.pi/4), -400*math.sin(math.pi/4), 30, color=('y' if randomCount[2] == 0 else ('#E7E4DA' if randomCount[2] == 1 else 'k')), fill=True)
+    plotCircle(675*math.cos(math.radians(67.5)), -675*math.sin(math.radians(67.5)), 30, color=('y' if randomCount[3] == 0 else ('#E7E4DA' if randomCount[3] == 1 else 'k')), fill=True)
+    plotCircle(0, -400, 30, color=('y' if randomCount[4] == 0 else ('#E7E4DA' if randomCount[4] == 1 else 'k')), fill=True)
+    plotCircle(-675*math.cos(math.radians(67.5)), -675*math.sin(math.radians(67.5)), 30, color=('y' if randomCount[5] == 0 else ('#E7E4DA' if randomCount[5] == 1 else 'k')), fill=True)
+    plotCircle(-400*math.cos(math.pi/4), -400*math.sin(math.pi/4), 30, color=('y' if randomCount[6] == 0 else ('#E7E4DA' if randomCount[6] == 1 else 'k')), fill=True)
+    plotCircle(-675*math.cos(math.radians(22.5)), -675*math.sin(math.radians(22.5)), 30, color=('y' if randomCount[7] == 0 else ('#E7E4DA' if randomCount[7] == 1 else 'k')), fill=True)
+    plotCircle(-400, 0, 30, color=('y' if randomCount[8] == 0 else ('#E7E4DA' if randomCount[8] == 1 else 'k')), fill=True)
+    plotCircle(-675*math.cos(math.radians(22.5)), 675*math.sin(math.radians(22.5)), 30, color=('y' if randomCount[9] == 0 else ('#E7E4DA' if randomCount[9] == 1 else 'k')), fill=True)
+    plotCircle(-400*math.cos(math.pi/4), 400*math.sin(math.pi/4), 30, color=('y' if randomCount[10] == 0 else ('#E7E4DA' if randomCount[10] == 1 else 'k')), fill=True)
+    plotCircle(-675*math.cos(math.radians(67.5)), 675*math.sin(math.radians(67.5)), 30, color=('y' if randomCount[11] == 0 else ('#E7E4DA' if randomCount[11] == 1 else 'k')), fill=True)
+    plotCircle(0, 400, 30, color=('y' if randomCount[12] == 0 else ('#E7E4DA' if randomCount[12] == 1 else 'k')), fill=True)
+    plotCircle(675*math.cos(math.radians(67.5)), 675*math.sin(math.radians(67.5)), 30, color=('y' if randomCount[13] == 0 else ('#E7E4DA' if randomCount[13] == 1 else 'k')), fill=True)
+    plotCircle(400*math.cos(math.pi/4), 400*math.sin(math.pi/4), 30, color=('y' if randomCount[14] == 0 else ('#E7E4DA' if randomCount[14] == 1 else 'k')), fill=True)
+    plotCircle(675*math.cos(math.radians(22.5)), 675*math.sin(math.radians(22.5)), 30, color=('y' if randomCount[15] == 0 else ('#E7E4DA' if randomCount[15] == 1 else 'k')), fill=True)
+
     plotCircle(400, 0, 30, color=('y' if randomCount[0] == 0 else 'k'), fill=False)
-    plotCircle(-400, 0, 30, color=('y' if randomCount[1] == 0 else 'k'), fill=False)
-    plotCircle(0, 400, 30, color=('y' if randomCount[2] == 0 else 'k'), fill=False)
-    plotCircle(0, -400, 30, color=('y' if randomCount[3] == 0 else 'k'), fill=False)
-    plotCircle(400 * math.cos(math.pi / 4), 400 * math.sin(math.pi / 4), 30, color=('y' if randomCount[4] == 0 else 'k'), fill=False)
-    plotCircle(-400 * math.cos(math.pi / 4), -400 * math.sin(math.pi / 4), 30, color=('y' if randomCount[5] == 0 else 'k'), fill=False)
-    plotCircle(-400 * math.cos(math.pi / 4), 400 * math.sin(math.pi / 4), 30, color=('y' if randomCount[6] == 0 else 'k'), fill=False)
-    plotCircle(400 * math.cos(math.pi / 4), -400 * math.sin(math.pi / 4), 30, color=('y' if randomCount[7] == 0 else 'k'), fill=False)
-    plotCircle(675 * math.cos(math.radians(22.5)), 675 * math.sin(math.radians(22.5)), 30, color=('y' if randomCount[8] == 0 else 'k'), fill=False)
-    plotCircle(-675 * math.cos(math.radians(22.5)), -675 * math.sin(math.radians(22.5)), 30, color=('y' if randomCount[9] == 0 else 'k'), fill=False)
-    plotCircle(-675 * math.cos(math.radians(22.5)), 675 * math.sin(math.radians(22.5)), 30, color=('y' if randomCount[10] == 0 else 'k'), fill=False)
-    plotCircle(675 * math.cos(math.radians(22.5)), -675 * math.sin(math.radians(22.5)), 30, color=('y' if randomCount[11] == 0 else 'k'), fill=False)
-    plotCircle(675 * math.cos(math.radians(67.5)), 675 * math.sin(math.radians(67.5)), 30, color=('y' if randomCount[12] == 0 else 'k'), fill=False)
-    plotCircle(-675 * math.cos(math.radians(67.5)), -675 * math.sin(math.radians(67.5)), 30, color=('y' if randomCount[13] == 0 else 'k'), fill=False)
-    plotCircle(-675 * math.cos(math.radians(67.5)), 675 * math.sin(math.radians(67.5)), 30, color=('y' if randomCount[14] == 0 else 'k'), fill=False)
-    plotCircle(675 * math.cos(math.radians(67.5)), -675 * math.sin(math.radians(67.5)), 30, color=('y' if randomCount[15] == 0 else 'k'), fill=False)
+    plotCircle(675 * math.cos(math.radians(22.5)), -675 * math.sin(math.radians(22.5)), 30, color=('y' if randomCount[1] == 0 else 'k'), fill=False)
+    plotCircle(400 * math.cos(math.pi / 4), -400 * math.sin(math.pi / 4), 30, color=('y' if randomCount[2] == 0 else 'k'), fill=False)
+    plotCircle(675 * math.cos(math.radians(67.5)), -675 * math.sin(math.radians(67.5)), 30, color=('y' if randomCount[3] == 0 else 'k'), fill=False)
+    plotCircle(0, -400, 30, color=('y' if randomCount[4] == 0 else 'k'), fill=False)
+    plotCircle(-675 * math.cos(math.radians(67.5)), -675 * math.sin(math.radians(67.5)), 30, color=('y' if randomCount[5] == 0 else 'k'), fill=False)
+    plotCircle(-400 * math.cos(math.pi / 4), -400 * math.sin(math.pi / 4), 30, color=('y' if randomCount[6] == 0 else 'k'), fill=False)
+    plotCircle(-675 * math.cos(math.radians(22.5)), -675 * math.sin(math.radians(22.5)), 30, color=('y' if randomCount[7] == 0 else 'k'), fill=False)
+    plotCircle(-400, 0, 30, color=('y' if randomCount[8] == 0 else 'k'), fill=False)
+    plotCircle(-675 * math.cos(math.radians(22.5)), 675 * math.sin(math.radians(22.5)), 30, color=('y' if randomCount[9] == 0 else 'k'), fill=False)
+    plotCircle(-400 * math.cos(math.pi / 4), 400 * math.sin(math.pi / 4), 30, color=('y' if randomCount[10] == 0 else 'k'), fill=False)
+    plotCircle(-675 * math.cos(math.radians(67.5)), 675 * math.sin(math.radians(67.5)), 30, color=('y' if randomCount[11] == 0 else 'k'), fill=False)
+    plotCircle(0, 400, 30, color=('y' if randomCount[12] == 0 else 'k'), fill=False)
+    plotCircle(675 * math.cos(math.radians(67.5)), 675 * math.sin(math.radians(67.5)), 30, color=('y' if randomCount[13] == 0 else 'k'), fill=False)
+    plotCircle(400 * math.cos(math.pi / 4), 400 * math.sin(math.pi / 4), 30, color=('y' if randomCount[14] == 0 else 'k'), fill=False)
+    plotCircle(675 * math.cos(math.radians(22.5)), 675 * math.sin(math.radians(22.5)), 30, color=('y' if randomCount[15] == 0 else 'k'), fill=False)
 
 
 plotField()
